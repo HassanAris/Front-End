@@ -1,0 +1,33 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>{{ livro ? 'Editar Livro' : 'Novo Livro' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <input formControlName="id" type="hidden" />
+      </div>
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input formControlName="titulo" id="titulo" name="titulo" placeholder="Titulo Do Livro"  required />
+        <div *ngIf="form.controls['titulo'].invalid && form.controls['titulo'].touched" class="error-message">
+          O título é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="autor">Autor:</label>
+        <input formControlName="autor" id="autor" name="autor" placeholder="Autor Do Livro"/>
+      </div>
+      <div class="form-group">
+        <label for="genero">Gênero:</label>
+        <input formControlName="genero" id="genero" name="genero" placeholder="Gênero Do Livro"/>
+      </div>
+      <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input formControlName="ano" id="ano" name="ano" placeholder="Ano de Publicação"/>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <button type="button" (click)="onClose()" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

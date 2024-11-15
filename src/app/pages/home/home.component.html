@@ -1,0 +1,35 @@
+<div class="event-management-container">
+<div class="container">
+  <div class="header">
+    <h1>Biblioteca</h1>
+    <button class="new-product" (click)="openCreateEventModal()">Novo Livro</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Titulo</th>
+        <th>Autor</th>
+        <th>Gênero</th>
+        <th>Ano</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <td>{{ livro.id }}</td>
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>{{ livro.genero }}</td>
+        <td>{{ livro.ano }}</td>
+        <td>
+          <button (click)="openEditModal(livro)"class="button-edit" ><i class="fa-solid fa-edit"></i>Editar</button>
+          <button (click)="excluirLivro(livro.id)" class="button-delete"><i class="fa-solid fa-trash"></i>Apagar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-criar-modal *ngIf="isModalOpen" (close)="closeCreateEventModal()" [livro]="livroParaEditar" (close)="closeCreateEventModal()"></app-criar-modal>
+
+</div>
